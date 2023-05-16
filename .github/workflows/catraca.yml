@@ -18,18 +18,19 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: install maven
-      run: sudo apt-get install maven
-    - name: build with maven
-      run: mvn package
+    - name: build
+      run: |
+        cd src
+        javac -cp . Main.java
+        javac -cp . TesteControleAcesso.java
     - name: exec
       run: |
-        cd target
-        java -jar <your_jar_file_name>.jar
+        cd src
+        java -cp . org.example.TesteControleAcesso
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: subindo no docker
       with:
-        image: ${{secrets.DOCKER_USERNAME}}/catraca
+        image: ${{secrets.DOCKER_USERNAME }}/catraca
         tags: 1.0
         registry: docker.io
         dockerfile: dockerfile
