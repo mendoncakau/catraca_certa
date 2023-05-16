@@ -23,4 +23,5 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6.2
         with:
           image: catraca:latest
+          registry: docker.io/kauem/catraca
           dockerfile: ./Dockerfile
