@@ -20,21 +20,20 @@ jobs:
         distribution: 'temurin'
     - name: build
       run: |
-        cd src
-        javac -cp . Main.java
-        javac -cp . TesteControleAcesso.java
+        javac Main.java
+        javac ControleAcesso.java
+        javac TesteControleAcesso.java
     - name: exec
       run: |
-        cd src
-        java -cp . org.example.TesteControleAcesso
+        java TesteControleAcesso
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: subindo no docker
       with:
-        image: ${{secrets.DOCKER_USERNAME }}/catraca
+        image: ${{secrets.DOCKER_USER}}/catraca
         tags: 1.0
         registry: docker.io
         dockerfile: dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
+        username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: versioning
       uses: codacy/git-version@2.4.0
