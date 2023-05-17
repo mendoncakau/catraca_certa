@@ -3,6 +3,7 @@ package org.example;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class ControleAcesso {
 
@@ -34,6 +35,19 @@ public class ControleAcesso {
     public ArrayList<RegistroAcesso> getRegistros() {
         return registros;
     }
+
+    public static void main(String[] args) {
+        ControleAcesso controleAcesso = new ControleAcesso();
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Digite o código de acesso: ");
+            int codigoAcesso = scanner.nextInt();
+            controleAcesso.registrarAcesso(codigoAcesso);
+        }
+
+        scanner.close();
+    }
 }
 
 class RegistroAcesso {
@@ -58,6 +72,4 @@ class RegistroAcesso {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         return dateFormat.format(dataAcesso);
     }
-
-
 }
