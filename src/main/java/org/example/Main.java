@@ -31,6 +31,7 @@ public class Main {
                 } else {
                     System.out.println("Entrada inválida. Tente novamente.");
                     i--;
+                    scanner.nextLine(); // Limpar o buffer do scanner
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Código inválido. Tente novamente.");
