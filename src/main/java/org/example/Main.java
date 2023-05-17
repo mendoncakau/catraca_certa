@@ -10,18 +10,21 @@ public class Main {
         while (true) {
             try {
                 System.out.print("Digite o código do crachá: ");
-                int codigo = scanner.nextInt();
-                controle.registrarAcesso(codigo);
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine(); // Consumir o caractere de nova linha
-                }
-            } catch (Exception e) {
-                System.out.println("Entrada inválida. Digite um número inteiro.");
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine(); // Limpar a entrada inválida do scanner
-                }
-            }
+                int codigo;
+                String input = scanner.nextLine();
 
+                if (input.equalsIgnoreCase("sair")) {
+                    System.out.println("Encerrando o programa...");
+                    break;
+                }
+
+                codigo = Integer.parseInt(input);
+                controle.registrarAcesso(codigo);
+            } catch (NumberFormatException e) {
+                System.out.println("Código inválido. Tente novamente.");
+            }
         }
+
+        scanner.close();
     }
 }
