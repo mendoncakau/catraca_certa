@@ -10,16 +10,11 @@ public class Main {
         for (int i = 0; i < 5; i++) {
             try {
                 System.out.print("Digite o código do crachá: ");
-                int codigo = scanner.nextInt();
-                scanner.nextLine(); // Consumir a quebra de linha após o número
+                String input = scanner.nextLine();
+                int codigo = Integer.parseInt(input);
                 controle.registrarAcesso(codigo);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Entrada inválida. Digite um número inteiro.");
-
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine(); // Limpar a entrada inválida do scanner
-                }
-
                 i--; // Decrementar o contador para repetir a iteração
             }
         }
