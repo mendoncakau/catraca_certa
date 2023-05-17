@@ -14,7 +14,7 @@ public class Main {
                 controle.registrarAcesso(codigo);
             } catch (Exception e) {
                 System.out.println("Entrada inválida. Digite um número inteiro.");
-                scanner.next(); // limpa a entrada inválida do scanner
+                scanner.nextLine(); // limpa a entrada inválida do scanner
             }
         }
     }
