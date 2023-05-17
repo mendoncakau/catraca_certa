@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class ControleAcesso {
-
     private ArrayList<RegistroAcesso> registros;
     private int totalPassagens;
 
@@ -51,7 +50,6 @@ public class ControleAcesso {
 }
 
 class RegistroAcesso {
-
     private int codigo;
     private Date dataAcesso;
 
