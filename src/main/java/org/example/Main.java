@@ -7,15 +7,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ControleAcesso controle = new ControleAcesso();
 
-        for (int i = 0; i < 5; i++) {
+        int count = 0;
+        while (count < 5) {
             try {
                 System.out.print("Digite o código do crachá: ");
                 String input = scanner.nextLine();
                 int codigo = Integer.parseInt(input);
                 controle.registrarAcesso(codigo);
+                count++;
             } catch (NumberFormatException e) {
                 System.out.println("Entrada inválida. Digite um número inteiro.");
-                i--; // Decrementar o contador para repetir a iteração
             }
         }
 
