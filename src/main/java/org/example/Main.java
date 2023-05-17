@@ -12,14 +12,9 @@ public class Main {
                 System.out.print("Digite o código do crachá: ");
                 int codigo = scanner.nextInt();
                 controle.registrarAcesso(codigo);
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine(); // Consumir o caractere de nova linha
-                }
             } catch (Exception e) {
                 System.out.println("Entrada inválida. Digite um número inteiro.");
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine(); // Limpar a entrada inválida do scanner
-                }
+                scanner.nextLine(); // Limpar a entrada inválida do scanner
                 i--; // Decrementar o contador para repetir a iteração
             }
         }
