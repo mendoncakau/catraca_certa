@@ -7,7 +7,7 @@ public class TesteControleAcesso {
     public static void main(String[] args) {
         ControleAcesso controle = new ControleAcesso();
 
-        int[] codigos = { 123, 456, 789, 123, 789, 456 };
+        int[] codigos = { 123, 456, 789, 123, 789};
 
         for (int codigo : codigos) {
             controle.registrarAcesso(codigo);

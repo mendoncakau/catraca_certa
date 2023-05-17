@@ -7,7 +7,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ControleAcesso controle = new ControleAcesso();
 
-        while (true) {
+        for (int i = 0; i < 5; i++) {
             try {
                 System.out.print("Digite o código do crachá: ");
                 int codigo;
@@ -22,6 +22,7 @@ public class Main {
                 controle.registrarAcesso(codigo);
             } catch (NumberFormatException e) {
                 System.out.println("Código inválido. Tente novamente.");
+                i--;
             }
         }
 
