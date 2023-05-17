@@ -1,4 +1,4 @@
-name: catraca ci nativo
+name: Java CI with Maven
 
 on:
   push:
@@ -12,30 +12,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: jdk setup
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: build
+        cache: maven
+    - name: Pacotes do Maven
+      run: mvn -B package --file pom.xml
+      
+    - name: Compilar projeto
       run: |
-        javac Main.java
-        javac ControleAcesso.java
-        javac TesteControleAcesso.java
-    - name: exec
+        cd src
+        javac -cp . org/example/Main.java
+        javac -cp . org/example/TesteControleAcesso.java
+      
+    - name: Executando o projeto
       run: |
-        java TesteControleAcesso
+        cd src
+        java -cp . org.example.Main
+      
     - uses: mr-smithers-excellent/docker-build-push@v6
-      name: subindo no docker
+      name: Build & push Docker image
       with:
-        image: ${{secrets.DOCKER_USER}}/catraca
-        tags: 1.0
-        registry: docker.io
-        dockerfile: dockerfile
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: versioning
-      uses: codacy/git-version@2.4.0
-      with:
-        release-branch: main
+          image: kauem/catraca
+          tags: 1.0, 1.1
+          registry: docker.io
+          dockerfile: dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
