@@ -7,31 +7,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ControleAcesso controle = new ControleAcesso();
 
-        int numIteracoes = 0;
-        int maxIteracoes = 5; // Número máximo de iterações permitidas
-
-        for (int i = 0; i < maxIteracoes; i++) {
-            System.out.print("Digite o código do crachá: ");
-            String input = scanner.nextLine();
-
-            if (input.equalsIgnoreCase("sair")) {
-                System.out.println("Encerrando o programa...");
-                break;
-            }
-
+        for (int i = 0; i < 5; i++) {
             try {
-                int codigo = Integer.parseInt(input);
-
+                System.out.print("Digite o código do crachá: ");
+                int codigo = scanner.nextInt();
                 controle.registrarAcesso(codigo);
-                numIteracoes++;
-
-                if (numIteracoes >= maxIteracoes) {
-                    System.out.println("Número máximo de iterações atingido. Encerrando o programa...");
-                    break;
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine(); // Consumir o caractere de nova linha
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Código inválido. Tente novamente.");
-                i--;
+            } catch (Exception e) {
+                System.out.println("Entrada inválida. Digite um número inteiro.");
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine(); // Limpar a entrada inválida do scanner
+                }
+                i--; // Decrementar o contador para repetir a iteração
             }
         }
 

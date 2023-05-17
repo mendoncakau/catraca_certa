@@ -10,7 +10,7 @@ public class ControleAcesso {
     private int totalPassagens;
 
     public ControleAcesso() {
-        registros = new ArrayList<>();
+        registros = new ArrayList<RegistroAcesso>();
         totalPassagens = 0;
     }
 
@@ -23,10 +23,6 @@ public class ControleAcesso {
             }
         }
 
-        if (!codigoJaExiste) {
-            totalPassagens = 0; // Reiniciar a contagem quando um número diferente é digitado
-        }
-
         totalPassagens++;
         String mensagem = (totalPassagens % 2 == 1) ? "Bem-vindo, acesso liberado" : "Obrigado pela visita";
         Date horaAcesso = new Date();
@@ -37,15 +33,6 @@ public class ControleAcesso {
 
     public ArrayList<RegistroAcesso> getRegistros() {
         return registros;
-    }
-
-    public void reiniciarContagem(int codigo) {
-        for (RegistroAcesso registro : registros) {
-            if (registro.getCodigo() == codigo) {
-                registros.remove(registro);
-                break;
-            }
-        }
     }
 }
 
@@ -71,4 +58,6 @@ class RegistroAcesso {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         return dateFormat.format(dataAcesso);
     }
+
+
 }
