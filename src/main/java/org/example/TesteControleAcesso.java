@@ -10,7 +10,11 @@ public class TesteControleAcesso {
         int[] codigos = { 123, 456, 789, 123, 789};
 
         for (int codigo : codigos) {
-            controle.registrarAcesso(codigo);
+            if (codigo > 0) {
+                controle.registrarAcesso(codigo);
+            } else {
+                System.out.println("Código inválido: " + codigo);
+            }
         }
     }
 }
