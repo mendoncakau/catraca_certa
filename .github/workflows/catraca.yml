@@ -20,18 +20,13 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Pacotes do Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package
       
     - name: Compilar projeto
-      run: |
-        cd src
-        javac -cp . org/example/Main.java
-        javac -cp . org/example/TesteControleAcesso.java
+      run: javac -cp ./src/main/java org/example/Main.java
       
     - name: Executando o projeto
-      run: |
-        cd src
-        java -cp . org.example.Main
+      run: java -cp ./src/main/java org.example.Main
       
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: Build & push Docker image
