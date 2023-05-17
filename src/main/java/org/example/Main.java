@@ -11,10 +11,15 @@ public class Main {
             try {
                 System.out.print("Digite o código do crachá: ");
                 int codigo = scanner.nextInt();
+                scanner.nextLine(); // Consumir a quebra de linha após o número
                 controle.registrarAcesso(codigo);
             } catch (Exception e) {
                 System.out.println("Entrada inválida. Digite um número inteiro.");
-                scanner.nextLine(); // Limpar a entrada inválida do scanner
+
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine(); // Limpar a entrada inválida do scanner
+                }
+
                 i--; // Decrementar o contador para repetir a iteração
             }
         }
