@@ -11,27 +11,27 @@ public class Main {
         int maxIteracoes = 5; // Número máximo de iterações permitidas
 
         for (int i = 0; i < maxIteracoes; i++) {
-            try {
-                System.out.print("Digite o código do crachá: ");
-                int codigo;
-                if (scanner.hasNextInt()) {
-                    codigo = scanner.nextInt();
-                    controle.registrarAcesso(codigo);
-                    numIteracoes++;
+            System.out.print("Digite o código do crachá: ");
+            String input = scanner.nextLine();
 
-                    if (numIteracoes >= maxIteracoes) {
-                        System.out.println("Número máximo de iterações atingido. Encerrando o programa...");
-                        break;
-                    }
-                } else {
-                    System.out.println("Entrada inválida. Tente novamente.");
-                    i--;
-                    scanner.nextLine(); // Limpar o buffer do scanner
+            if (input.equalsIgnoreCase("sair")) {
+                System.out.println("Encerrando o programa...");
+                break;
+            }
+
+            try {
+                int codigo = Integer.parseInt(input);
+
+                controle.registrarAcesso(codigo);
+                numIteracoes++;
+
+                if (numIteracoes >= maxIteracoes) {
+                    System.out.println("Número máximo de iterações atingido. Encerrando o programa...");
+                    break;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Código inválido. Tente novamente.");
                 i--;
-                scanner.nextLine(); // Limpar o buffer do scanner
             }
         }
 
